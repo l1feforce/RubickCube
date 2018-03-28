@@ -1,3 +1,5 @@
 public enum Position {
-    UPPER, LOWER, LEFT, RIGHT, BACK, FRONT;
+    UPPER, LOWER, LEFT, RIGHT, BACK, FRONT
+
+
 }

@@ -8,8 +8,7 @@ public class FacetTest {
 
     @Test
     public void generate() {
-        Map<Point, Colour> chips = null;
-        Facet test = new Facet(3, Position.BACK);
-        assertEquals(1, test.generate(Colour.GREEN).chips);
+        Facet test = new Facet(3, Position.BACK).generate(Colour.GREEN);
+        assertEquals(test, new Facet(3, Position.BACK).generate(Colour.GREEN));
     }
 }

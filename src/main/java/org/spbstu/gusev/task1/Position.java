@@ -1,4 +1,4 @@
-package org.spbstu.Gusev_1;
+package org.spbstu.gusev.task1;
 
 
 public enum Position {

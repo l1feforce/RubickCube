@@ -1,4 +1,4 @@
-package org.spbstu.Gusev_1;
+package org.spbstu.gusev.task1;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,16 +13,6 @@ import static org.junit.Assert.*;
 public class CubeTest {
 
     private Cube testingCube = new Cube();
-    @Test
-    public void generate() {
-        Cube cube = Cube.generate();
-        List<Position> allPositions = Arrays.asList(Position.RIGHT, Position.LOWER,
-                Position.LEFT, Position.UPPER, Position.BACK, Position.FRONT);
-        for (Position pos : allPositions
-                ) {
-            assertArrayEquals(cube.getCube().get(pos), Cube.generate().getCube().get(pos));
-        }
-    }
 
     @Before
     public void initialize() {
@@ -63,6 +53,33 @@ public class CubeTest {
         testingCube_2.setCube(testingMap_2);
 
         testingCube.turnLeft(Position.BACK, 1);
+        List<Position> allPositions = Arrays.asList(Position.values());
+        for (Position pos : allPositions
+                ) {
+            assertArrayEquals(testingCube_2.getFacet(pos),
+                    testingCube.getFacet(pos));
+        }
+    }
+
+    @Test
+    public void rotateCube() {
+        Map<Position, int[][]> testingMap_2 = new HashMap<>();
+        int[][] arrBack_2 = {{0, 1, 1}, {1, 5, 0}, {0, 3, 3}};
+        int[][] arrRight_2 = {{3, 3, 2}, {3, 2, 2}, {3, 1, 2}};
+        int[][] arrLower_2 = {{3, 1, 1}, {3, 3, 0}, {0, 0, 0}};
+        int[][] arrLeft_2 = {{3, 2, 3}, {3, 3, 3}, {2, 5, 2}};
+        int[][] arrUpper_2 = {{3, 3, 1}, {5, 1, 3}, {5, 5, 5}};
+        int[][] arrFront_2 = {{3, 2, 5}, {0, 0, 2}, {1, 5, 5}};
+        testingMap_2.put(Position.BACK, arrBack_2);
+        testingMap_2.put(Position.LEFT, arrLeft_2);
+        testingMap_2.put(Position.FRONT, arrFront_2);
+        testingMap_2.put(Position.RIGHT, arrRight_2);
+        testingMap_2.put(Position.UPPER, arrUpper_2);
+        testingMap_2.put(Position.LOWER, arrLower_2);
+        Cube testingCube_2 = new Cube();
+        testingCube_2.setCube(testingMap_2);
+
+        testingCube.turnRight(Position.FRONT, 3);
         List<Position> allPositions = Arrays.asList(Position.values());
         for (Position pos : allPositions
                 ) {

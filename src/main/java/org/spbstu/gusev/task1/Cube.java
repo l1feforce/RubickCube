@@ -1,8 +1,6 @@
-package org.spbstu.Gusev_1;
+package org.spbstu.gusev.task1;
 
 import java.util.*;
-
-import static org.spbstu.Gusev_1.Position.*;
 
 public class Cube {
 
@@ -42,7 +40,7 @@ public class Cube {
      */
     public final static Cube generate() {
         Cube cubeNull = new Cube();
-        List<Position> allPositions = Arrays.asList(values());
+        List<Position> allPositions = Arrays.asList(Position.values());
         for (Position pos : allPositions
                 ) {
             cubeNull.cube.put(pos, fill(allPositions.indexOf(pos)));
@@ -57,7 +55,7 @@ public class Cube {
      */
     public final static Cube randomize() {
         Cube cubeNew = Cube.generate();
-        List<Position> set = Arrays.asList(values());
+        List<Position> set = Arrays.asList(Position.values());
         for (Position pos : set) {
             for (int i = 0; i < 1 + (int) (Math.random() * 3); i++) {
                 cubeNew.turnLeft(pos, 1 + (int) (Math.random() * 2));
@@ -137,46 +135,46 @@ public class Cube {
     public final Cube turnLeft(Position pos, int depth) {
         switch (pos) {
             case BACK:
-                List<Position> setBack = Arrays.asList(UPPER, LEFT,
-                        LOWER, RIGHT);
+                List<Position> setBack = Arrays.asList(Position.UPPER, Position.LEFT,
+                        Position.LOWER, Position.RIGHT);
                 this.rotateFacetLeft(pos);
                 this.rotateLines(setBack, depth);
-                if (depth == 3) this.rotateFacetLeft(FRONT);
+                if (depth == 3) this.rotateFacetRight(Position.FRONT);
                 break;
             case LEFT:
-                List<Position> setLeft = Arrays.asList(FRONT, LOWER,
-                        BACK, UPPER);
+                List<Position> setLeft = Arrays.asList(Position.FRONT, Position.LOWER,
+                        Position.BACK, Position.UPPER);
                 this.rotateFacetLeft(pos);
                 this.rotateLines(setLeft, depth);
-                if (depth == 3) this.rotateFacetLeft(RIGHT);
+                if (depth == 3) this.rotateFacetRight(Position.RIGHT);
                 break;
             case LOWER:
-                List<Position> setLower = Arrays.asList(RIGHT, BACK,
-                        LEFT, FRONT);
+                List<Position> setLower = Arrays.asList(Position.RIGHT, Position.BACK,
+                        Position.LEFT, Position.FRONT);
                 this.rotateFacetLeft(pos);
                 this.rotateLines(setLower, depth);
-                if (depth == 3) this.rotateFacetLeft(UPPER);
+                if (depth == 3) this.rotateFacetRight(Position.UPPER);
                 break;
             case RIGHT:
-                List<Position> setRight = Arrays.asList(BACK, LOWER,
-                        FRONT, UPPER);
+                List<Position> setRight = Arrays.asList(Position.BACK, Position.LOWER,
+                        Position.FRONT, Position.UPPER);
                 this.rotateFacetLeft(pos);
                 this.rotateLines(setRight, depth);
-                if (depth == 3) this.rotateFacetLeft(LEFT);
+                if (depth == 3) this.rotateFacetRight(Position.LEFT);
                 break;
             case UPPER:
-                List<Position> setUpper = Arrays.asList(RIGHT, FRONT,
-                        LEFT, BACK);
+                List<Position> setUpper = Arrays.asList(Position.RIGHT, Position.FRONT,
+                        Position.LEFT, Position.BACK);
                 this.rotateFacetLeft(pos);
                 this.rotateLines(setUpper, depth);
-                if (depth == 3) this.rotateFacetLeft(LOWER);
+                if (depth == 3) this.rotateFacetRight(Position.LOWER);
                 break;
             case FRONT:
-                List<Position> setFront = Arrays.asList(UPPER, RIGHT,
-                        LOWER, LEFT);
+                List<Position> setFront = Arrays.asList(Position.UPPER, Position.RIGHT,
+                        Position.LOWER, Position.LEFT);
                 this.rotateFacetLeft(pos);
                 this.rotateLines(setFront, depth);
-                if (depth == 3) this.rotateFacetLeft(BACK);
+                if (depth == 3) this.rotateFacetRight(Position.BACK);
                 break;
         }
         return this;
@@ -192,46 +190,46 @@ public class Cube {
     public final Cube turnRight(Position pos, int depth) {
         switch (pos) {
             case BACK:
-                List<Position> setBack = Arrays.asList(RIGHT, LOWER,
-                        LEFT, UPPER);
+                List<Position> setBack = Arrays.asList(Position.RIGHT, Position.LOWER,
+                        Position.LEFT, Position.UPPER);
                 this.rotateFacetRight(pos);
                 this.rotateLines(setBack, depth);
-                if (depth == 3) this.rotateFacetLeft(FRONT);
+                if (depth == 3) this.rotateFacetLeft(Position.FRONT);
                 break;
             case LEFT:
-                List<Position> setLeft = Arrays.asList(UPPER, BACK,
-                        LOWER, FRONT);
+                List<Position> setLeft = Arrays.asList(Position.UPPER, Position.BACK,
+                        Position.LOWER, Position.FRONT);
                 this.rotateFacetRight(pos);
                 this.rotateLines(setLeft, depth);
-                if (depth == 3) this.rotateFacetLeft(RIGHT);
+                if (depth == 3) this.rotateFacetLeft(Position.RIGHT);
                 break;
             case LOWER:
-                List<Position> setLower = Arrays.asList(FRONT, LEFT,
-                        BACK, RIGHT);
+                List<Position> setLower = Arrays.asList(Position.FRONT, Position.LEFT,
+                        Position.BACK, Position.RIGHT);
                 this.rotateFacetRight(pos);
                 this.rotateLines(setLower, depth);
-                if (depth == 3) this.rotateFacetLeft(UPPER);
+                if (depth == 3) this.rotateFacetLeft(Position.UPPER);
                 break;
             case RIGHT:
-                List<Position> setRight = Arrays.asList(UPPER, FRONT,
-                        LOWER, BACK);
+                List<Position> setRight = Arrays.asList(Position.UPPER, Position.FRONT,
+                        Position.LOWER, Position.BACK);
                 this.rotateFacetRight(pos);
                 this.rotateLines(setRight, depth);
-                if (depth == 3) this.rotateFacetLeft(LEFT);
+                if (depth == 3) this.rotateFacetLeft(Position.LEFT);
                 break;
             case UPPER:
-                List<Position> setUpper = Arrays.asList(BACK, LEFT,
-                        FRONT, RIGHT);
+                List<Position> setUpper = Arrays.asList(Position.BACK, Position.LEFT,
+                        Position.FRONT, Position.RIGHT);
                 this.rotateFacetRight(pos);
                 this.rotateLines(setUpper, depth);
-                if (depth == 3) this.rotateFacetLeft(LOWER);
+                if (depth == 3) this.rotateFacetLeft(Position.LOWER);
                 break;
             case FRONT:
-                List<Position> setFront = Arrays.asList(LEFT, LOWER,
-                        RIGHT, UPPER);
+                List<Position> setFront = Arrays.asList(Position.LEFT, Position.LOWER,
+                        Position.RIGHT, Position.UPPER);
                 this.rotateFacetRight(pos);
                 this.rotateLines(setFront, depth);
-                if (depth == 3) this.rotateFacetLeft(BACK);
+                if (depth == 3) this.rotateFacetLeft(Position.BACK);
                 break;
         }
         return this;
